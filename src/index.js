@@ -4,7 +4,7 @@ dotnenv.config({ quiet: true });
 import connect from './db/connect.js';
 import app from './app.js'
 
-const port = process.env.port
+const port = process.env.PORT
 
 connect().then(() => {
     app.listen(port, () => {

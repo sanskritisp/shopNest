@@ -1,11 +1,11 @@
-const apiResponse = (statusCode = 200,
+const ApiResponse = (statusCode = 200,
     data = null, message = 'success') => {
     return {
         statusCode,
         message,
-        success: statusCode < 200,
+        success: statusCode < 400,
         data
     }
 
 }
-export default apiResponse;
+export default ApiResponse;
