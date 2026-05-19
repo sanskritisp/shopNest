@@ -1,18 +1,14 @@
 import { Router } from "express";
 import { upload } from "../middleware/multer.middleware.js";
-import { createUser } from "../controllers/user.controller.js";
+import { createUser, getUsers, login, logout } from "../controllers/user.controller.js";
+import jwtAuth from "../middleware/auth.middleware.js";
 
 const router = Router();
 
 // temporary debug middleware
-router.post('/create', (req, res, next) => {
-    console.log('RAW content-type:', req.headers['content-type']);
-    console.log('RAW body before multer:', req.body);
-    next();
-}, upload.single('image'), (req, res, next) => {
-    console.log('body AFTER multer:', req.body);
-    console.log('file AFTER multer:', req.file);
-    next();
-}, createUser);
+router.post("/create", upload.single("image"), createUser);
+router.get("/getAllusers", getUsers)
+router.post("/login", login)
+router.post("/logout", jwtAuth, logout)
 
 export default router;
